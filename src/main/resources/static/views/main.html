@@ -1,9 +1,34 @@
 <div class="section">
-    <h1>Random Number Sorter</h1>
-    <div>
-        <form class="simple-form">
-            Unsorted list of integers: <input type="text" ng-model="numbers">
-            <input type="submit" ng-click="sort(numbers)" value="Sort" />
-        </form>
+    <h1 class="heading">Random Number Sorter</h1>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="alert alert-info">
+            <form class="simple-form">
+                Comma separated list of integers: <input type="text" ng-model="numbers">
+                <input type="submit" ng-click="sort(numbers)" value="Sort"/>
+            </form>
+        </div>
     </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h3>Recent Sort Results</h3>
+        <table class="table-condensed table-striped" width="100%">
+            <thead>
+            <th>Created</th>
+            <th>Unsorted List</th>
+            <th>Sorted List</th>
+            <th>Number of Swaps</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="r in results | orderBy : created : false">
+                <td>{{r.created | date : "dd MMM yyyy, HH:mm"}}</td>
+                <td>{{r.inputList}}</td>
+                <td>{{r.sortedList}}</td>
+                <td>{{r.numberOfSwaps}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </div>
