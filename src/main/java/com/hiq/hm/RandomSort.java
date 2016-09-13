@@ -2,13 +2,17 @@ package com.hiq.hm;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
  * Created by Alan Tibbetts on 2016-09-12.
  */
+@Component
 public class RandomSort {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RandomSort.class);
@@ -24,15 +28,16 @@ public class RandomSort {
             throw new RuntimeException("Cannot sort a null list!");
         }
 
-        RandomSortResult randomSortResult = new RandomSortResult(unsortedList);
+        RandomSortResult randomSortResult = new RandomSortResult(LocalDateTime.now(), unsortedList);
 
-        if (!unsortedList.isEmpty()) {
-            performSort(unsortedList, randomSortResult);
+        List<Integer> sortedList = new ArrayList<>(unsortedList);
+        if (!sortedList.isEmpty()) {
+            performSort(sortedList, randomSortResult);
         }
 
         LOGGER.debug("Sorted in {} swaps", randomSortResult.getNumberOfSwaps());
 
-        randomSortResult.setSortedList(unsortedList);
+        randomSortResult.setSortedList(sortedList);
         return randomSortResult;
     }
 

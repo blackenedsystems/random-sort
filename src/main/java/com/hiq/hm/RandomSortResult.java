@@ -1,5 +1,12 @@
 package com.hiq.hm;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.util.StringUtils;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -7,12 +14,18 @@ import java.util.List;
  */
 public class RandomSortResult {
 
+    private final LocalDateTime created;
     private final List<Integer> inputList;
     private int numberOfSwaps;
     private List<Integer> sortedList;
 
-    public RandomSortResult(final List<Integer> numberList) {
+    public RandomSortResult(final LocalDateTime created, final List<Integer> numberList) {
+        this.created = created;
         this.inputList = numberList;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
     }
 
     public List<Integer> getInputList() {
@@ -37,5 +50,18 @@ public class RandomSortResult {
 
     public void incrementSwapCount() {
         numberOfSwaps++;
+    }
+
+    public static List<Integer> convertToList(final String numbers) {
+        List<String> items = Arrays.asList(numbers.split("\\s*,\\s*"));
+        List<Integer> integers = new ArrayList<>();
+        for (String item : items) {
+            integers.add(Integer.parseInt(item));
+        }
+        return integers;
+    }
+
+    public static String convertToCsv(final List<Integer> numbers) {
+        return StringUtils.collectionToDelimitedString(numbers, ",");
     }
 }
