@@ -1,7 +1,5 @@
-package com.hiq.hm;
+package com.hiq.hm.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;

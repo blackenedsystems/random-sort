@@ -1,7 +1,7 @@
 package com.hiq.hm.controllers;
 
-import com.hiq.hm.RandomSortResult;
-import com.hiq.hm.RandomSortService;
+import com.hiq.hm.model.RandomSortResult;
+import com.hiq.hm.services.RandomSortService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

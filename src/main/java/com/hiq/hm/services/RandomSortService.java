@@ -1,5 +1,8 @@
-package com.hiq.hm;
+package com.hiq.hm.services;
 
+import com.hiq.hm.db.RandomSortDao;
+import com.hiq.hm.model.RandomSort;
+import com.hiq.hm.model.RandomSortResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

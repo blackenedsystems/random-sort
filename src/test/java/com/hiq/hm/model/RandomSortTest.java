@@ -1,5 +1,7 @@
-package com.hiq.hm;
+package com.hiq.hm.model;
 
+import com.hiq.hm.model.RandomSort;
+import com.hiq.hm.model.RandomSortResult;
 import org.junit.Ignore;
 import org.junit.Test;
 

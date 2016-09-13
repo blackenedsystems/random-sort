@@ -1,5 +1,7 @@
-package com.hiq.hm;
+package com.hiq.hm.services;
 
+import com.hiq.hm.db.RandomSortDao;
+import com.hiq.hm.model.RandomSortResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Alan Tibbetts on 2016-09-13.
@@ -20,13 +23,24 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class RandomSortDaoTest {
+public class RandomSortServiceTest {
+
+    @Autowired
+    private RandomSortService randomSortService;
 
     @Autowired
     private RandomSortDao randomSortDao;
 
     @Test
-    public void save_ok() {
+    public void sort_ok() {
+        RandomSortResult sortResult = randomSortService.sort("1,3,2");
+        assertNotNull(sortResult);
+        assertEquals("1,2,3", RandomSortResult.convertToCsv(sortResult.getSortedList()));
+        assertTrue(sortResult.getNumberOfSwaps() > 0);
+    }
+
+    @Test
+    public void loadResults_ok() {
         List<Integer> unsortedList = Arrays.asList(4, 2, 3);
         List<Integer> sortedList = Arrays.asList(2, 3, 4);
 
@@ -36,13 +50,9 @@ public class RandomSortDaoTest {
 
         randomSortDao.save(randomSortResult);
 
-        List<RandomSortResult> randomSortResults = randomSortDao.loadResults(10);
-        assertNotNull(randomSortResults);
-        assertEquals(1, randomSortResults.size());
-
-        RandomSortResult retrievedResult = randomSortResults.get(0);
-        assertEquals(unsortedList, retrievedResult.getInputList());
-        assertEquals(sortedList, retrievedResult.getSortedList());
-        assertEquals(20, retrievedResult.getNumberOfSwaps());
+        List<RandomSortResult> sortResultList = randomSortService.loadResults(10);
+        assertNotNull(sortResultList);
+        assertEquals(1, sortResultList.size());
     }
+
 }
