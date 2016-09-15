@@ -12,6 +12,15 @@ The Task (summarised from the original Swedish)
 
 This task was estimated to take 1 to 2 hours.  I spent just over 4 hours.
 
+Improvements
+------------
+As I was already over the 'expected time', there were a few things left undone:
+* Add error handling to the Javascript
+* Add tests for the Javascript
+* Clean up the UX
+* Revist the Java test coverage / quality
+* General review of the Java to ensure quality
+
 Technology
 ----------
 * Spring Boot
